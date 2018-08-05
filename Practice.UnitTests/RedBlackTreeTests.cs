@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Practice.UnitTests
 {
-    [TestFixture]
+    [TestFixtureSource("TestCases")]
     public class RedBlackTreeTests
     {
         // TODO: Add some other test cases, probably rewrite as
@@ -20,14 +20,35 @@ namespace Practice.UnitTests
             49, 47, 10, 2, 36, 23, 40, 28, 25, 39
         };
 
+        static object[] TestCases = BuildTestCases();
+
         private RedBlackTree tree;
+
+        private List<int> numbers;
+
+        static object[] BuildTestCases()
+        {
+            var testCases = new List<object[]>();
+
+            for (var i = 1; i < Numbers.Count; i++)
+            {
+                testCases.Add(new object[] { Numbers.Take(i).ToList() });
+            }
+
+            return testCases.ToArray<object>();
+        }
+
+        public RedBlackTreeTests(List<int> numbers)
+        {
+            this.numbers = numbers;
+        }
 
         [SetUp]
         public void Setup()
         {
             tree = new RedBlackTree();
 
-            foreach (var number in Numbers)
+            foreach (var number in numbers)
             {
                 tree.Insert(number);
             }
@@ -40,11 +61,11 @@ namespace Practice.UnitTests
 
             tree.InOrderTraverse(n => results.Add(n.Value));
 
-            Assert.AreEqual(50, results.Count);
+            Assert.AreEqual(numbers.Count, results.Count);
 
-            for (var i = 0; i < 50; i++)
+            for (var i = 1; i < numbers.Count; i++)
             {
-                Assert.AreEqual(i + 1, results[i]);
+                Assert.Greater(results[i], results[i - 1]);
             }
         }
 
@@ -72,10 +93,6 @@ namespace Practice.UnitTests
         public void AllPathsHaveEqualBlackNodes()
         {
             var paths = GetPaths(tree);
-
-            // 50 nodes is greater than 31 and less than 63.
-            // A perfectly balanced tree of 31 nodes would have 16 leaves.
-            Assert.GreaterOrEqual(paths.Count, 16);
 
             var blackNodeCount = BlackNodeCount(paths[0]);
 
