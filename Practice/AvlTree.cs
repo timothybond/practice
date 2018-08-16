@@ -11,6 +11,11 @@ namespace Practice
             throw new NotImplementedException();
         }
 
+        public void Delete(int value)
+        {
+            throw new NotImplementedException();
+        }
+
         public void InOrderTraverse(Action<Node> traversalAction)
         {
             throw new NotImplementedException();

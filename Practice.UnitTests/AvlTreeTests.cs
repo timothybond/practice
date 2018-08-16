@@ -27,21 +27,27 @@ namespace Practice.UnitTests
 
         private List<int> numbers;
 
+        private List<int> numbersToDelete;
+
         static object[] BuildTestCases()
         {
             var testCases = new List<object[]>();
 
             for (var i = 1; i < Numbers.Count; i++)
             {
-                testCases.Add(new object[] { Numbers.Take(i).ToList() });
+                for (var j = 0; j <= i; j++)
+                { 
+                    testCases.Add(new object[] { Numbers.Take(i).ToList(), Numbers.Take(j).ToList() });
+                }
             }
 
             return testCases.ToArray<object>();
         }
 
-        public AvlTreeTests(List<int> numbers)
+        public AvlTreeTests(List<int> numbers, List<int> numbersToDelete)
         {
             this.numbers = numbers;
+            this.numbersToDelete = numbersToDelete;
         }
 
         [SetUp]
@@ -53,6 +59,11 @@ namespace Practice.UnitTests
             {
                 tree.Insert(number);
             }
+
+            foreach (var number in numbersToDelete)
+            {
+                tree.Delete(number);
+            }
         }
 
         [Test]
@@ -62,9 +73,9 @@ namespace Practice.UnitTests
 
             tree.InOrderTraverse(n => results.Add(n.Value));
 
-            Assert.AreEqual(numbers.Count, results.Count);
+            Assert.AreEqual(numbers.Count - numbersToDelete.Count, results.Count);
 
-            for (var i = 1; i < numbers.Count; i++)
+            for (var i = 1; i < numbers.Count - numbersToDelete.Count; i++)
             {
                 Assert.Greater(results[i], results[i - 1]);
             }
