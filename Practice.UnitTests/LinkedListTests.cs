@@ -56,6 +56,9 @@ namespace Practice.UnitTests
         }
 
         [Test]
+        [TestCase(1, 2, 3, 4, 5)]
+        [TestCase(2, 4, 6, 8, 10, 12, 14, 16, 18, 20)]
+        [TestCase(new int[] { })]
         public void Count(params int[] entries)
         {
             var list = new LinkedList();
@@ -108,6 +111,75 @@ namespace Practice.UnitTests
             Assert.AreEqual(2, entries[1]);
             Assert.AreEqual(3, entries[2]);
             Assert.AreEqual(4, entries[3]);
+        }
+
+        [Test]
+        public void Insert()
+        {
+            var list = new LinkedList();
+            list.Add(1);
+            list.Add(2);
+            list.Add(3);
+            list.Add(4);
+            list.Add(5);
+
+            list.Insert(10, 3);
+
+            var entries = list.GetEntries();
+            Assert.AreEqual(6, entries.Length);
+
+            Assert.AreEqual(1, entries[0]);
+            Assert.AreEqual(2, entries[1]);
+            Assert.AreEqual(3, entries[2]);
+            Assert.AreEqual(10, entries[3]);
+            Assert.AreEqual(4, entries[4]);
+            Assert.AreEqual(5, entries[5]);
+        }
+
+        [Test]
+        public void InsertAtZero()
+        {
+            var list = new LinkedList();
+            list.Add(1);
+            list.Add(2);
+            list.Add(3);
+            list.Add(4);
+            list.Add(5);
+
+            list.Insert(10, 0);
+
+            var entries = list.GetEntries();
+            Assert.AreEqual(6, entries.Length);
+
+            Assert.AreEqual(10, entries[0]);
+            Assert.AreEqual(1, entries[1]);
+            Assert.AreEqual(2, entries[2]);
+            Assert.AreEqual(3, entries[3]);
+            Assert.AreEqual(4, entries[4]);
+            Assert.AreEqual(5, entries[5]);
+        }
+
+        [Test]
+        public void InsertAtCount()
+        {
+            var list = new LinkedList();
+            list.Add(1);
+            list.Add(2);
+            list.Add(3);
+            list.Add(4);
+            list.Add(5);
+
+            list.Insert(10, 5);
+
+            var entries = list.GetEntries();
+            Assert.AreEqual(6, entries.Length);
+
+            Assert.AreEqual(1, entries[0]);
+            Assert.AreEqual(2, entries[1]);
+            Assert.AreEqual(3, entries[2]);
+            Assert.AreEqual(4, entries[3]);
+            Assert.AreEqual(5, entries[4]);
+            Assert.AreEqual(10, entries[5]);
         }
     }
 }
