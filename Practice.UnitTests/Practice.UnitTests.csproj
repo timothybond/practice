@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DirectedGraphNodeTests.cs" />
     <Compile Include="GraphNodeTests.cs" />
     <Compile Include="LinkedListTests.cs" />
     <Compile Include="MaxHeapTests.cs" />
