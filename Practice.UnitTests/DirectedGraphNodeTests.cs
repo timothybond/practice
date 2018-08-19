@@ -8,7 +8,9 @@ namespace Practice
     [TestFixture]
     public class DirectedGraphNodeTests
     {
-        private Dictionary<string, DirectedGraphNode> graphNodes;
+        private Dictionary<string, DirectedGraph.Node> graphNodes;
+
+        private DirectedGraph graph;
 
         [SetUp]
         public void CreateGraph()
@@ -24,17 +26,17 @@ namespace Practice
              * i -> j[2]
              */
 
-            var a = new DirectedGraphNode();
-            var b = new DirectedGraphNode();
-            var c = new DirectedGraphNode();
-            var d = new DirectedGraphNode();
-            var e = new DirectedGraphNode();
-            var f = new DirectedGraphNode();
-            var g = new DirectedGraphNode();
-            var h = new DirectedGraphNode();
-            var i = new DirectedGraphNode();
-            var j = new DirectedGraphNode();
-            var z = new DirectedGraphNode();
+            var a = new DirectedGraph.Node();
+            var b = new DirectedGraph.Node();
+            var c = new DirectedGraph.Node();
+            var d = new DirectedGraph.Node();
+            var e = new DirectedGraph.Node();
+            var f = new DirectedGraph.Node();
+            var g = new DirectedGraph.Node();
+            var h = new DirectedGraph.Node();
+            var i = new DirectedGraph.Node();
+            var j = new DirectedGraph.Node();
+            var z = new DirectedGraph.Node();
 
             a.AddLink(b, 2);
             a.AddLink(c, 4);
@@ -55,7 +57,7 @@ namespace Practice
             h.AddLink(j, 1);
             i.AddLink(j, 2);
 
-            graphNodes = new Dictionary<string, DirectedGraphNode>
+            graphNodes = new Dictionary<string, DirectedGraph.Node>
             {
                 {"a", a },
                 {"b", b },
@@ -69,6 +71,10 @@ namespace Practice
                 {"j", j },
                 {"z", z }
             };
+
+            graph = new DirectedGraph();
+
+            graph.Nodes.AddRange(new[] { a, b, c, d, e, f, g, h, i, j, z });
         }
 
         [Test]
@@ -77,7 +83,7 @@ namespace Practice
             var a = graphNodes["a"];
             var j = graphNodes["j"];
 
-            var shortestPath = a.GetShortestPath(j);
+            var shortestPath = graph.GetShortestPath(a, j);
 
             Assert.AreEqual(10, shortestPath.TotalDistance);
         }
@@ -88,7 +94,7 @@ namespace Practice
             var a = graphNodes["a"];
             var z = graphNodes["z"];
 
-            var shortestPath = a.GetShortestPath(z);
+            var shortestPath = graph.GetShortestPath(a, z);
 
             Assert.IsNull(shortestPath);
         }

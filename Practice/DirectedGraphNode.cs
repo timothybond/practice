@@ -3,37 +3,47 @@ using System.Collections.Generic;
 
 namespace Practice
 {
-    public class DirectedGraphNode
+    public class DirectedGraph
     {
-        public Path ShortestPath { get; set; }
+        public List<Node> Nodes { get; private set; }
 
-        public void AddLink(DirectedGraphNode target, int distance)
+        public DirectedGraph()
         {
-            AddLink(new Link(target, distance));
-        }
-
-        public void AddLink(Link link)
-        {
-            throw new NotImplementedException();
+            this.Nodes = new List<Node>();
         }
 
         /// <summary>
-        /// Uses Dijkstra's algorithm to get the shortest path from this node to a target node.
+        /// Uses Dijkstra's algorithm to get the shortest path from one node to another.
         /// </summary>
         /// <param name="target">The destination node to reach.</param>
         /// <returns>The shortest path to the target node, or null if no path exists.</returns>
-        public Path GetShortestPath(DirectedGraphNode target)
+        public Path GetShortestPath(Node startNode, Node destinationNode)
         {
             throw new NotImplementedException();
+        }
+
+        public class Node
+        {
+            public Path ShortestPath { get; set; }
+
+            public void AddLink(Node target, int distance)
+            {
+                AddLink(new Link(target, distance));
+            }
+
+            public void AddLink(Link link)
+            {
+                throw new NotImplementedException();
+            }
         }
 
         public class Link
         {
             public int Distance { get; private set; }
 
-            public DirectedGraphNode Target { get; private set; }
+            public Node Target { get; private set; }
 
-            public Link(DirectedGraphNode target, int distance)
+            public Link(Node target, int distance)
             {
                 this.Target = target;
                 this.Distance = distance;
