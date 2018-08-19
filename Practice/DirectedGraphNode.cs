@@ -18,7 +18,7 @@ namespace Practice
         }
 
         /// <summary>
-        /// Uses A* algorithm to get the shortest path from this node to a target node.
+        /// Uses Djikstra's algorithm to get the shortest path from this node to a target node.
         /// </summary>
         /// <param name="target">The destination node to reach.</param>
         /// <returns>The shortest path to the target node, or null if no path exists.</returns>
