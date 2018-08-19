@@ -16,6 +16,7 @@ namespace Practice.UnitTests
             49, 47, 10, 2, 36, 23, 40, 28, 25, 39
         };
 
+        [Test]
         public void ReturnsNumbersInOrder()
         {
             var sortedNumbers = Sorter.Sort(Numbers);
