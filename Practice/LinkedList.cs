@@ -12,7 +12,7 @@ namespace Practice
         /// Adds a new Node at the front of the list.
         /// </summary>
         /// <param name="value">Value.</param>
-        public void Add(int value)
+        public void AddFront(int value)
         {
             var node = new Node(value)
             {
@@ -29,12 +29,34 @@ namespace Practice
             Head = node;
 
         }
+        public void Add(int value)
+        {
+            var node = new Node(value);
+
+            var currentNode = Head;
+
+            if (Head == null)
+            {
+                Head = node;
+                return;
+            }
+            while(currentNode != null)
+            {
+                if(currentNode.Next == null)
+                {
+                    currentNode.Next = node;
+                    node.Previous = currentNode;
+                    return;
+                }
+                currentNode = currentNode.Next;
+            }
+        }
         /// <summary>
         /// Inserts a new Node after the given index.
         /// </summary>
         /// <param name="value">Value.</param>
         /// <param name="index">Index.</param>
-        public void Insert(int value, int index)
+        public void InsertAfter(int value, int index)
         {
             var node = new Node(value);
             Node current = Head;
@@ -48,6 +70,37 @@ namespace Practice
                         node.Previous = current;
                         current.Next.Previous = node;
                         current.Next = node;
+
+                    }
+                    current = current.Next;
+                }
+            }
+
+        }
+        public void Insert(int value, int index)
+        {
+            var node = new Node(value);
+            Node current = Head;
+            if (index <= Count)
+            {
+                for (int i = 0; i <= index; i++)
+                {
+                    if(index == 0)
+                    {
+                        node.Next = Head;
+                        Head.Previous = node;
+                        Head = node;
+                    }
+                    if (i == index - 1)
+                    {
+                        node.Next = current.Next;
+                        node.Previous = current;
+                        if(current.Next != null)
+                        {
+                            current.Next.Previous = node; 
+                        }
+
+                        current.Next = node;
                     }
                     current = current.Next;
                 }
@@ -55,12 +108,34 @@ namespace Practice
 
         }
 
-        public void RemoveFirst(int value)
+        public void Remove(int value)
         {
-            if(value == Head.Data)
+            var current = Head;
+
+            while (current != null)
             {
-                Head.Next.Previous = null;
-                Head = Head.Next;
+                if (value == current.Data)
+                {
+                    if(current.Previous == null)
+                    {
+                        current.Next.Previous = null;
+                        Head = current.Next;
+                        return;
+                    }
+                    else if (current.Next == null)
+                    {
+                        current.Previous.Next = null;
+                        return;
+                    }
+                    else
+                    {
+                        current.Previous.Next = current.Next;
+                        current.Next.Previous = current.Previous;
+                        return;
+                    }
+
+                }
+                current = current.Next;
             }
         }
 

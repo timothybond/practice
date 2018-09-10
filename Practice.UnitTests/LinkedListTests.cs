@@ -43,7 +43,7 @@ namespace Practice.UnitTests
             list.Add(15);
             list.Add(30);
 
-            list.RemoveFirst(15);
+            list.Remove(15);
 
             var listEntries = list.GetEntries();
 
@@ -81,7 +81,7 @@ namespace Practice.UnitTests
             list.Add(4);
             list.Add(5);
 
-            list.RemoveFirst(1);
+            list.Remove(1);
             
             var entries = list.GetEntries();
             Assert.AreEqual(4, entries.Length);
@@ -102,7 +102,7 @@ namespace Practice.UnitTests
             list.Add(4);
             list.Add(5);
 
-            list.RemoveFirst(5);
+            list.Remove(5);
 
             var entries = list.GetEntries();
             Assert.AreEqual(4, entries.Length);
