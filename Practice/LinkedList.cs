@@ -38,29 +38,65 @@ namespace Practice
                 tail.Next = node;
                 tail = node;
             }
-            //var current = this.head;
-
-            //while(current != null)
-            //{
-            //    if(current.Next == null)
-            //    {
-            //        current.Next = node;
-            //        node.Previous = current;
-            //        return;
-            //    }
-            //    current = current.Next;
-
-            //}
+     
         }
 
         public void Insert(int value, int index)
         {
-            throw new NotImplementedException();
+            var node = new DoublyLinkedNode(value);
+            var current = head;
+
+            if(index == 0)
+            {
+                var next = this.head?.Next;
+                node.Next = this.head;
+                this.head = node;
+                return;
+            }
+            if(index == this.Count)
+            {
+                Add(value);
+                return;
+            }
+            for (int i = 0; i < index; i++)
+            {
+                current = current.Next;
+            }
+            var previous = current.Previous;
+            previous.Next = node;
+            node.Previous = previous;
+            node.Next = current;
+            current.Previous = node;
+           
         }
 
         public void RemoveFirst(int value)
         {
-            throw new NotImplementedException();
+            if(this.head.Data == value)
+            {
+                if (this.head.Next != null)
+                {
+                    var next = this.head.Next;
+                    next.Previous = null;
+                    this.head = next;
+                }
+                else
+                {
+                    this.head = null;
+                }
+                return;
+            }
+            var current = this.head;
+
+            while(current != null)
+            {
+                if(current.Data == value)
+                {
+                    current.Previous.Next = current.Next;
+                }
+                current = current.Next;
+            }
+           
         }
 
         public int[] GetEntries()

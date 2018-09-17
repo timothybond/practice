@@ -112,6 +112,17 @@ namespace Practice.UnitTests
             Assert.AreEqual(3, entries[2]);
             Assert.AreEqual(4, entries[3]);
         }
+        [Test]
+        public void RemoveHead()
+        {
+            var list = new LinkedList();
+            list.Add(1);
+
+            list.RemoveFirst(1);
+
+            Assert.AreEqual(0, list.Count);
+
+        }
 
         [Test]
         public void Insert()
