@@ -48,7 +48,6 @@
     <Compile Include="RedBlackTree.cs" />
     <Compile Include="GraphNode.cs" />
     <Compile Include="Sorter.cs" />
-    <Compile Include="DoublyLinkedNode.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
