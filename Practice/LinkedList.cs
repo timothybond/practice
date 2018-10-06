@@ -88,43 +88,41 @@ namespace Practice
 		{
 			if (this.head.Data == value)
 			{
-				//if (this.head.Next != null)
-				//{
 				var next = this.head.Next;
+
 				if (this.head.Next != null)
 				{
 					next.Previous = null;
 				}
 				this.head = next;
-				//  }
-				//  else
-				//  {
-				//     this.head = null;
-				//  }
+
 				return;
 			}
-			var current = this.head;
-
-			while (current != null)
-			{
+			for (var current = this.head; current != null; current = current.Next)
+            {
 				if (current.Data == value)
 				{
 					current.Previous.Next = current.Next;
+
+                    if(current.Previous.Next != null)
+					{
+						current.Previous.Next.Previous = current.Previous;
+					}
+					return;
 				}
-				current = current.Next;
 			}
 
 		}
 
         public int[] GetEntries()
         {
-            var current = this.head;
+			var index = 0;
             var entries = new int[Count];
 
-            for (int i = 0; i < Count; i++)
+			for (var current = this.head; current != null; current = current.Next)
             {
-                entries[i] = current.Data;
-                current = current.Next;
+                entries[index] = current.Data;
+				index++;
             }
             return entries;
         }
