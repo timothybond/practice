@@ -112,6 +112,37 @@ namespace Practice.UnitTests
             Assert.AreEqual(3, entries[2]);
             Assert.AreEqual(4, entries[3]);
         }
+		[Test]
+        public void RemoveLastEntryWhenDuplicate()
+        {
+            var list = new LinkedList();
+            list.Add(1);
+            list.Add(5);
+            list.Add(3);
+            list.Add(4);
+            list.Add(5);
+
+            list.RemoveFirst(5);
+            
+            var entries = list.GetEntries();
+            Assert.AreEqual(4, entries.Length);
+
+            Assert.AreEqual(1, entries[0]);
+            Assert.AreEqual(3, entries[1]);
+            Assert.AreEqual(4, entries[2]);
+            Assert.AreEqual(5, entries[3]);
+        }
+        [Test]
+        public void RemoveOnlyItem()
+        {
+            var list = new LinkedList();
+            list.Add(1);
+
+            list.RemoveFirst(1);
+
+            Assert.AreEqual(0, list.Count);
+
+        }
 
         [Test]
         public void Insert()
