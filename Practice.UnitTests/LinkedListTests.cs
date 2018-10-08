@@ -113,7 +113,7 @@ namespace Practice.UnitTests
             Assert.AreEqual(4, entries[3]);
         }
 		[Test]
-        public void RemoveLastEntryWhenDuplicate()
+        public void RemoveEntryWhenDuplicate()
         {
             var list = new LinkedList();
             list.Add(1);
