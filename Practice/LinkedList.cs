@@ -2,17 +2,17 @@
 
 namespace Practice
 {
-   public class LinkedList
+	public class LinkedList
 	{
 		private class Node
-		{         
+		{
 			public Node Next;
 
 			public Node Previous;
 
 			public int Data;
 
-            public Node(int data)
+			public Node(int data)
 			{
 				this.Data = data;
 				this.Next = null;
@@ -36,26 +36,26 @@ namespace Practice
 			return entries;
 		}
 
-        public void Add(int data)
+		public void Add(int data)
 		{
 			var node = new Node(data);
-                     
-			if(this.head == null)
+
+			if (this.head == null)
 			{
 				this.head = node;
 				this.tail = node;
-			}         
+			}
 			else
 			{
 				this.tail.Next = node;
 				node.Previous = tail;
-				this.tail = node;            
-			}  
+				this.tail = node;
+			}
 			this.Count++;
 		}
 
-        public void RemoveFirst(int data)
-		{  
+		public void RemoveFirst(int data)
+		{
 			Node next = this.head?.Next;
 
 			if (this.head.Data == data)
@@ -70,8 +70,8 @@ namespace Practice
 				this.head = next;
 				this.Count--;
 				return;
-			}         
-            
+			}
+
 			for (var current = next; current != null; current = current.Next)
 			{
 				if (current.Data == data)
@@ -79,7 +79,7 @@ namespace Practice
 					if (current == this.tail)
 					{
 						this.tail = this.tail.Previous;
-                        this.tail.Next = null;
+						this.tail.Next = null;
 					}
 					else
 					{
@@ -92,7 +92,7 @@ namespace Practice
 			}
 		}
 
-        public void Insert(int data, int index)
+		public void Insert(int data, int index)
 		{
 			if (index == this.Count)
 			{
@@ -101,32 +101,32 @@ namespace Practice
 			}
 
 			if (index < this.Count)
-            {
-                var node = new Node(data);
+			{
+				var node = new Node(data);
 
-                if (index == 0)
-                {
-                    node.Next = this.head;
-                    this.head = node;
-                }
+				if (index == 0)
+				{
+					node.Next = this.head;
+					this.head = node;
+				}
 
-                else
-                {
-                    var current = this.tail;
+				else
+				{
+					var current = this.tail;
 
-                    for (int i = this.Count; i != index; i--)
-                    {
+					for (int i = this.Count; i != index; i--)
+					{
 						current = current.Previous;
-                    }
+					}
 					var before = current;
 					node.Previous = before;
-					node.Next = current.Next;               
+					node.Next = current.Next;
 					before.Next.Next.Previous = node;
 					before.Next = node;
-                }
+				}
 				this.Count++;
-			}         
-   
-		}      
+			}
+
+		}
 	}
 }
