@@ -21,7 +21,7 @@ namespace Practice
 		private Node head;
 		private Node tail;
 
-		public int Count { get; set; }
+		public int Count { get; private set; }
 
 		public int[] GetEntries()
 		{
@@ -57,38 +57,49 @@ namespace Practice
 		public void RemoveFirst(int data)
 		{
 			Node next = this.head?.Next;
+			var match = true;
 
-			if (this.head.Data == data)
+			if (this.head == null)
 			{
-				if (this.head.Next == null)
-				{
-					this.head = null;
-					this.Count--;
-					return;
-				}
-				next.Previous = null;
-				this.head = next;
-				this.Count--;
 				return;
 			}
-
-			for (var current = next; current != null; current = current.Next)
+			if (this.head.Data == data)
 			{
-				if (current.Data == data)
+				if (next == null)
 				{
-					if (current == this.tail)
-					{
-						this.tail = this.tail.Previous;
-						this.tail.Next = null;
-					}
-					else
+					this.head = null;
+				}
+				else
+				{
+					next.Previous = null;
+					this.head = next;
+				}
+			}
+			else
+			{
+				for (var current = next; current != null; current = current.Next)
+				{
+					if (current.Data == data)
 					{
 						current.Previous.Next = current.Next;
+						
+                        if (current == this.tail)
+						{
+							this.tail = this.tail.Previous;
+							this.tail.Next = null;
+						}
+						break;
 					}
-
-					this.Count--;
-					return;
+					else if (current.Next == null)
+					{
+						match = false;
+					}
 				}
+			}
+			if (match)
+			{
+				this.Count--;
+				return;
 			}
 		}
 
@@ -114,7 +125,7 @@ namespace Practice
 				{
 					var current = this.tail;
 
-					for (int i = this.Count; i != index; i--)
+					for (int i = 1; i == index -1; i++)
 					{
 						current = current.Previous;
 					}
