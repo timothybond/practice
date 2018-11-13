@@ -9,7 +9,7 @@ namespace Practice
         
         public int Capacity
         {
-            get=> capacity;
+            get => capacity;
             set => capacity = value;
         }
         public char this [int index]
@@ -56,7 +56,6 @@ namespace Practice
 
         public void Insert(int n, char c)
         {
-            
             char temp;
             char replacement = c;
             for (int j = n; j <= this.Length; j++)
@@ -70,12 +69,13 @@ namespace Practice
         }
         public void Remove(int startIndex, int length)
         {
+            //TODO:Do.
             this.Length--;
         }
         public override string ToString()
         {
-            int length = arr.Length;
-            return new string(arr, 0, length);
+            //why is arr.Length changing?
+            return new string(arr, 0, arr.Length);
         }
     }
 }
