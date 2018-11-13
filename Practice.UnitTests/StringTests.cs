@@ -52,13 +52,50 @@ namespace Practice.UnitTests
         public void ToStringReturnsString()
         {
             var sb = new StringBuilder();
-             sb.Append('c');
+            sb.Append('c');
             sb.Append('h');
             sb.Append('o');
             sb.Append('r');
             sb.Append('e');
             var s = sb.ToString();
             Assert.AreEqual("chore", s);
+        }
+        [Test]
+        public void ToStringReturnsEmptyString()
+        {
+            var sb = new StringBuilder();
+            var s = sb.ToString();
+            Assert.AreEqual("", s);
+        }
+        [TestCase(2, 3, 's')]
+        [TestCase(2, 2, 'e')]
+        public void RemoveCharacters(int index, int length, char ans)
+        {
+            var sb = new StringBuilder();
+            var initialLength = 6;
+            sb.Append('c');
+            sb.Append('h');
+            sb.Append('o');
+            sb.Append('r');
+            sb.Append('e');
+            sb.Append('s');
+            sb.Remove(index, length);
+            Assert.AreEqual(ans, sb[index]);
+            Assert.AreEqual(initialLength - length, sb.Length);
+        }
+        [TestCase(2, 9)]
+        public void RemoveLengthGreaterThrowsException(int index, int length)
+        {
+            var sb = new StringBuilder();
+            sb.Append('c');
+            sb.Append('h');
+            sb.Append('o');
+            sb.Append('r');
+            sb.Append('e');
+            sb.Append('s');
+            
+           Assert.Throws<IndexOutOfRangeException>(() => sb.Remove(index, length));
+           
         }
     }
 }

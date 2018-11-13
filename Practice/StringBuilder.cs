@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Text;
 namespace Practice
 {
     public class StringBuilder
@@ -21,10 +20,6 @@ namespace Practice
         {
             get;
             private set;
-            
-        }
-        public StringBuilder()
-        {
             
         }
         public void Append(char c)
@@ -50,12 +45,15 @@ namespace Practice
             {
                 this.Capacity *= 2;
                 Array.Resize(ref arr, this.Capacity);
-
             }
         }
 
         public void Insert(int n, char c)
         {
+          if(n >= this.Length)
+            {
+                throw new IndexOutOfRangeException();
+            }
             char temp;
             char replacement = c;
             for (int j = n; j <= this.Length; j++)
@@ -69,12 +67,34 @@ namespace Practice
         }
         public void Remove(int startIndex, int length)
         {
-            //TODO:Do.
-            this.Length--;
+        
+            var afterDeleted = startIndex + length;
+            
+            if(afterDeleted > this.Length || startIndex > this.Length - 1)
+            {
+                throw new IndexOutOfRangeException();
+            }
+            char replacement = arr[afterDeleted];
+
+            for (int i = startIndex; i < afterDeleted; i++)
+            {
+                arr[i] = replacement; 
+                replacement = arr[i + 1];
+                this.Length--;
+
+            }
+            
+            if (arr[afterDeleted] != default(char))
+            {
+                for (int i = afterDeleted; i < this.Length; i++)
+                {
+                    arr[i] = default(char);
+                }
+            }
         }
+        
         public override string ToString()
         {
-            //why is arr.Length changing?
             return new string(arr, 0, this.Length);
         }
     }
