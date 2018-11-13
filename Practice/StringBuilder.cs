@@ -75,7 +75,7 @@ namespace Practice
         public override string ToString()
         {
             //why is arr.Length changing?
-            return new string(arr, 0, arr.Length);
+            return new string(arr, 0, this.Length);
         }
     }
 }
