@@ -5,6 +5,14 @@ namespace Practice.UnitTests
     [TestFixture()]
     public class StringTests
     {
+        [TestCase("thisIsAString")]
+        [TestCase("soIsThis")]
+        public void StringConstructor(string s)
+        {
+            var sb = new StringBuilder(s);
+            Assert.AreEqual(sb.ToString(), s);
+        }
+       
         [TestCase(2, 'r')]
         public void Insert(int num, char c)
         {
@@ -14,6 +22,15 @@ namespace Practice.UnitTests
             sb.Append('o');
             sb.Insert(num, c);
             Assert.AreEqual('r', sb[2]);
+        }
+        [TestCase(4, 'r')]
+        public void InsertGreaterThanLength(int num, char c)
+        {
+            var sb = new StringBuilder();
+            sb.Append('c');
+            sb.Append('h');
+            sb.Append('o');
+            Assert.Throws<IndexOutOfRangeException>(() => sb.Insert(num, c));
         }
         [TestCase(2, 'e')]
         public void InsertOverCapacity(int num, char c)
@@ -81,6 +98,15 @@ namespace Practice.UnitTests
             sb.Append('s');
             sb.Remove(index, length);
             Assert.AreEqual(ans, sb[index]);
+            Assert.AreEqual(initialLength - length, sb.Length);
+        }
+        [TestCase(5, 1, 'e', "chores")]
+        public void RemoveLastCharacter(int index, int length, char ans, string s)
+        {
+            var sb = new StringBuilder(s);
+            var initialLength = 6;
+            sb.Remove(index, length);
+            Assert.AreEqual(ans, sb[4]);
             Assert.AreEqual(initialLength - length, sb.Length);
         }
         [TestCase(2, 9)]

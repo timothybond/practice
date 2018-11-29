@@ -5,38 +5,47 @@ namespace Practice
     {
         private static int capacity = 10;
         private char[] arr = new char[capacity];
-        
+
         public int Capacity
         {
             get => capacity;
             set => capacity = value;
         }
-        public char this [int index]
+        public char this[int index]
         {
             get => arr[index];
             set => arr[index] = value;
         }
-        public int Length 
+        public int Length
         {
             get;
             private set;
-            
+
+        }
+        public StringBuilder()
+        {
+
+        }
+        public StringBuilder(string s)
+        {
+            for(int i = 0; i < s.Length; i++)
+            {
+                this.Append(s[i]);
+            }
         }
         public void Append(char c)
         {
             CheckCapacity();
             arr[this.Length] = c;
-
             this.Length++;
         }
 
         private void CheckCapacity()
         {
-            if (this.Length > this.Capacity)
+            if (this.Length >= this.Capacity)
             {
                 this.Capacity *= 2;
                 Array.Resize(ref arr, this.Capacity);
-
             }
         }
         private void CheckCapacity(int index)
@@ -50,7 +59,7 @@ namespace Practice
 
         public void Insert(int n, char c)
         {
-          if(n >= this.Length)
+            if (n >= this.Length)
             {
                 throw new IndexOutOfRangeException();
             }
@@ -67,10 +76,10 @@ namespace Practice
         }
         public void Remove(int startIndex, int length)
         {
-        
+
             var afterDeleted = startIndex + length;
-            
-            if(afterDeleted > this.Length || startIndex > this.Length - 1)
+
+            if (afterDeleted > this.Length || startIndex > this.Length - 1)
             {
                 throw new IndexOutOfRangeException();
             }
@@ -78,12 +87,12 @@ namespace Practice
 
             for (int i = startIndex; i < afterDeleted; i++)
             {
-                arr[i] = replacement; 
+                arr[i] = replacement;
                 replacement = arr[i + 1];
                 this.Length--;
 
             }
-            
+
             if (arr[afterDeleted] != default(char))
             {
                 for (int i = afterDeleted; i < this.Length; i++)
@@ -92,7 +101,7 @@ namespace Practice
                 }
             }
         }
-        
+
         public override string ToString()
         {
             return new string(arr, 0, this.Length);
