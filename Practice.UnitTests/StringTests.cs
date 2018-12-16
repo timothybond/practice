@@ -65,18 +65,14 @@ namespace Practice.UnitTests
             sb.Append(c);
             Assert.AreEqual(c, sb[1]);
         }
-        [Test]
-        public void ToStringReturnsString()
+        [TestCase("AppendOver",'j')]
+        public void AppendOverCapacity(string s, char c)
         {
             var sb = new StringBuilder();
-            sb.Append('c');
-            sb.Append('h');
-            sb.Append('o');
-            sb.Append('r');
-            sb.Append('e');
-            var s = sb.ToString();
-            Assert.AreEqual("chore", s);
+            sb.Append(c);
+            Assert.AreEqual(c, sb[0]);
         }
+
         [Test]
         public void ToStringReturnsEmptyString()
         {
