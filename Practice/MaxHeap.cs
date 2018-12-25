@@ -45,25 +45,6 @@ namespace Practice
             }
             return items[0];
         }
-        //public int poll()
-        //{
-        //    if(size == 0)
-        //    {
-        //        throw new Exception();
-        //    }
-        //    int item = items[0];
-        //    items[0] = items[size - 1];
-        //    size--;
-        //    HeapifyDown();
-        //    return item;
-        //}
-        //public void Add(int item)
-        //{
-        //    EnsureExtraCapacity();
-        //    items[size] = item;
-        //    size++;
-        //    HeapifyUp();
-        //}
 
         private void HeapifyUp()
         {
@@ -77,7 +58,6 @@ namespace Practice
         private void HeapifyDown()
         {
             int index = 0;
-            //if there is no left child then there is no right child
             while(HasLeftChild(index))
             {
                 int largerChildIndex = GetLeftChildIndex(index);
