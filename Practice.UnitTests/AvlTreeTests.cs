@@ -21,7 +21,9 @@ namespace Practice.UnitTests
             49, 47, 10, 2, 36, 23, 40, 28, 25, 39
         };
 
+#pragma warning disable IDE0052 // Remove unread private members
         static object[] TestCases = BuildTestCases();
+#pragma warning restore IDE0052 // Remove unread private members
 
         private AvlTree tree;
 

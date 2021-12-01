@@ -4,7 +4,7 @@ using System.Linq;
 using NUnit.Framework;
 using Practice;
 
-namespace GraphNodeTests
+namespace Practice.UnitTests
 {
     [TestFixture]
     public class BreadthFirstSearch

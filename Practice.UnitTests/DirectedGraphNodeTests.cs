@@ -2,7 +2,7 @@
 
 using NUnit.Framework;
 
-namespace Practice
+namespace Practice.UnitTests
 {
     [TestFixture]
     public class DirectedGraphNodeTests
