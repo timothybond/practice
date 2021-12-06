@@ -9,11 +9,12 @@ namespace Practice.UnitTests
     [TestFixture]
     public class BreadthFirstSearch
     {
-        private GraphNode root;
+        // Note temporary values are for nullability
+        private GraphNode root = new(0);
 
-        private List<GraphNode> searchedNodes;
+        private List<GraphNode> searchedNodes = new(); 
 
-        private List<GraphNode> allNodes;
+        private List<GraphNode> allNodes = new();
 
         [SetUp]
         public void Setup()
@@ -98,11 +99,12 @@ namespace Practice.UnitTests
     [TestFixture]
     public class DepthFirstSearch
     {
-        private GraphNode root;
+        // Note temporary values are for nullability
+        private GraphNode root = new(0);
 
-        private List<GraphNode> searchedNodes;
+        private List<GraphNode> searchedNodes = new();
 
-        private List<GraphNode> allNodes;
+        private List<GraphNode> allNodes = new();
 
         [SetUp]
         public void Setup()

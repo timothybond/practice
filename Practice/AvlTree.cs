@@ -4,7 +4,7 @@ namespace Practice
 {
     public class AvlTree
     {
-        public Node Root { get; private set; }
+        public Node? Root { get; private set; }
 
         public void Insert(int value)
         {
@@ -25,9 +25,9 @@ namespace Practice
         {
             public int Value { get; private set; }
 
-            public Node LeftChild { get; set; }
+            public Node? LeftChild { get; set; }
 
-            public Node RightChild { get; set; }
+            public Node? RightChild { get; set; }
 
             public int Height { get; }
         }

@@ -7,9 +7,10 @@ namespace Practice.UnitTests
     [TestFixture]
     public class DirectedGraphNodeTests
     {
-        private Dictionary<string, DirectedGraph.Node> graphNodes;
+        // Note temporary values are for nullability
+        private Dictionary<string, DirectedGraph.Node> graphNodes = new();
 
-        private DirectedGraph graph;
+        private DirectedGraph graph = new();
 
         [SetUp]
         public void CreateGraph()

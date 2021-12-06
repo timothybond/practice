@@ -12,7 +12,7 @@ namespace Practice.UnitTests
         // TODO: Add some other test cases, probably rewrite as
         // a generator with a random seed so it stays the same
         // Pre-randomized list of integers from 1 through 50
-        private readonly static List<int> Numbers = new List<int>
+        private readonly static List<int> Numbers = new()
         {
             17, 8, 48, 46, 30, 31, 18, 33, 20, 22,
             34, 3, 50, 42, 27, 38, 9, 19, 35, 4,
@@ -25,11 +25,12 @@ namespace Practice.UnitTests
         static object[] TestCases = BuildTestCases();
 #pragma warning restore IDE0052 // Remove unread private members
 
-        private AvlTree tree;
+        // Note temporary values are for nullability
+        private AvlTree tree = new();
 
-        private List<int> numbers;
+        private List<int> numbers = new();
 
-        private List<int> numbersToDelete;
+        private List<int> numbersToDelete = new();
 
         static object[] BuildTestCases()
         {
@@ -95,7 +96,7 @@ namespace Practice.UnitTests
             });
         }
 
-        private int GetHeight(AvlTree.Node node)
+        private int GetHeight(AvlTree.Node? node)
         {
             if (node == null)
             {
@@ -128,13 +129,13 @@ namespace Practice.UnitTests
                 results.Add(ancestorsAndSelf.ToList());
             }
 
-            var children = new List<AvlTree.Node> { node.LeftChild, node.RightChild };
+            var children = new List<AvlTree.Node?> { node.LeftChild, node.RightChild };
             children.RemoveAll(item => item == null);
 
             foreach (var child in children)
             {
-                ancestorsAndSelf.Push(child);
-                BuildPaths(child, ancestorsAndSelf, results);
+                ancestorsAndSelf.Push(child!);
+                BuildPaths(child!, ancestorsAndSelf, results);
                 ancestorsAndSelf.Pop();
             }
         }
