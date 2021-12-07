@@ -18,13 +18,13 @@ namespace Practice.UnitTests
             heap.Insert(2);
             heap.Insert(46);
 
-            Assert.AreEqual(99, heap.GetMax());
-            Assert.AreEqual(72, heap.GetMax());
-            Assert.AreEqual(46, heap.GetMax());
-            Assert.AreEqual(27, heap.GetMax());
-            Assert.AreEqual(12, heap.GetMax());
-            Assert.AreEqual(5, heap.GetMax());
-            Assert.AreEqual(2, heap.GetMax());
+            Assert.AreEqual(99, heap.Pop());
+            Assert.AreEqual(72, heap.Pop());
+            Assert.AreEqual(46, heap.Pop());
+            Assert.AreEqual(27, heap.Pop());
+            Assert.AreEqual(12, heap.Pop());
+            Assert.AreEqual(5, heap.Pop());
+            Assert.AreEqual(2, heap.Pop());
         }
     }
 }

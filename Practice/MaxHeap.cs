@@ -4,7 +4,7 @@ namespace Practice
 {
     public class MaxHeap
     {
-        public int GetMax()
+        public int Pop()
         {
             throw new NotImplementedException();
         }
