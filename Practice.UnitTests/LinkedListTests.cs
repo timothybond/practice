@@ -181,5 +181,34 @@ namespace Practice.UnitTests
             Assert.AreEqual(5, entries[4]);
             Assert.AreEqual(10, entries[5]);
         }
+
+        [Test]
+        public void MultipleInsertsAndRemovals()
+        {
+            // Note: this mostly tests whether we can do things
+            // that might mess up the "head" or "tail" pointers
+            var list = new LinkedList();
+
+            list.Insert(1, 0);      // [1]
+            list.Insert(2, 1);      // [1, 2]
+            list.RemoveFirst(2);    // [1]
+            list.RemoveFirst(1);    // []
+            list.Insert(3, 0);      // [3]
+            list.Insert(1, 0);      // [1, 3]
+            list.Add(4);            // [1, 3, 4]
+            list.RemoveFirst(4);    // [1, 3]
+            list.Add(5);            // [1, 3, 5]
+            list.Insert(2, 1);      // [1, 2, 3, 5]
+            list.Insert(4, 3);      // [1, 2, 3, 4, 5]
+            list.RemoveFirst(4);    // [1, 2, 3, 5]
+            list.RemoveFirst(5);    // [1, 2, 3]
+            list.RemoveFirst(3);    // [1, 2]
+
+            Assert.AreEqual(2, list.Count);
+
+            var entries = list.GetEntries();
+            Assert.AreEqual(1, entries[0]);
+            Assert.AreEqual(2, entries[1]);
+        }
     }
 }
