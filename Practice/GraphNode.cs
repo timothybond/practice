@@ -9,13 +9,10 @@ namespace Practice
 
         public IReadOnlyList<GraphNode> Neighbors { get { return neighbors; } }
 
-        public bool Marked { get; set; }
-
         public int Value { get; private set; }
 
         public GraphNode(int value)
         {
-            this.Marked = false; // Explicit default for clarity
             this.Value = value;
         }
 
@@ -35,12 +32,12 @@ namespace Practice
             node.neighbors.Add(this);
         }
         
-        public GraphNode BreadthFirstSearch(Action<GraphNode> markNode, Func<GraphNode, bool> condition)
+        public GraphNode BreadthFirstSearch(Action<GraphNode> onCheckNode, Func<GraphNode, bool> condition)
         {
             throw new NotImplementedException();
         }
 
-        public GraphNode DepthFirstSearch(Action<GraphNode> markNode, Func<GraphNode, bool> condition)
+        public GraphNode DepthFirstSearch(Action<GraphNode> onCheckNode, Func<GraphNode, bool> condition)
         {
             throw new NotImplementedException();
         }

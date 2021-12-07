@@ -51,7 +51,7 @@ namespace Practice.UnitTests
             },
             n => false);
 
-            Assert.That(allNodes.All(n => n.Marked));
+            Assert.That(allNodes.All(n => searchedNodes.Contains(n)));
             Assert.AreEqual(searchedNodes.Count, 11);
 
             foreach (var node in allNodes)
@@ -141,7 +141,7 @@ namespace Practice.UnitTests
             },
             n => false);
 
-            Assert.That(allNodes.All(n => n.Marked));
+            Assert.That(allNodes.All(n => searchedNodes.Contains(n)));
             Assert.AreEqual(searchedNodes.Count, 11);
 
             foreach (var node in allNodes)
