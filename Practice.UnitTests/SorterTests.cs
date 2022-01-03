@@ -1,5 +1,7 @@
-﻿using NUnit.Framework;
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using NUnit.Framework;
 
 namespace Practice.UnitTests
 {
@@ -26,6 +28,27 @@ namespace Practice.UnitTests
             for (var i = 0; i < sortedNumbers.Count; i++)
             {
                 Assert.AreEqual(i + 1, sortedNumbers[i]);
+            }
+        }
+
+        [Test]
+        public void ReturnsScrambedNumbersInOrder()
+        {
+            const int TestCount = 100;
+            var rand = new Random();
+
+            for (var test = 0; test < TestCount; test++)
+            {
+                var scrambedNumbers = Numbers.OrderBy(n => rand.Next()).ToList();
+
+                var sortedNumbers = Sorter.Sort(scrambedNumbers);
+
+                Assert.AreEqual(50, sortedNumbers.Count);
+
+                for (var i = 0; i < sortedNumbers.Count; i++)
+                {
+                    Assert.AreEqual(i + 1, sortedNumbers[i]);
+                }
             }
         }
     }
