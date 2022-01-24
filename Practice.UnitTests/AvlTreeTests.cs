@@ -83,7 +83,7 @@ namespace Practice.UnitTests
                 Assert.Greater(results[i], results[i - 1]);
             }
         }
-        
+
         [Test]
         public void AllSubtreesAreWithinOneHeight()
         {
@@ -94,6 +94,96 @@ namespace Practice.UnitTests
                     Assert.Fail("Tree not balanced at node {0}.", n);
                 }
             });
+        }
+
+        [Test]
+        public void OnInsert_RotateRight()
+        {
+            tree = new AvlTree();
+            tree.Insert(2);
+            tree.Insert(1);
+            tree.Insert(0);
+
+            var results = new List<int>();
+            tree.InOrderTraverse(n => results.Add(n.Value));
+
+            Assert.AreEqual(3, results.Count);
+
+            for (var i = 0; i < 2; i++)
+            {
+                Assert.AreEqual(i, results[i]);
+            }
+
+            Assert.AreEqual(2, tree.Root!.Height, "Tree is not balanced to 2 layers.");
+        }
+
+        [Test]
+        public void OnInsert_RotateLeft()
+        {
+            tree = new AvlTree();
+            tree.Insert(0);
+            tree.Insert(1);
+            tree.Insert(2);
+
+            var results = new List<int>();
+            tree.InOrderTraverse(n => results.Add(n.Value));
+
+            Assert.AreEqual(3, results.Count);
+
+            for (var i = 0; i < 2; i++)
+            {
+                Assert.AreEqual(i, results[i]);
+            }
+
+            Assert.AreEqual(2, tree.Root!.Height, "Tree is not balanced to 2 layers.");
+        }
+
+        [Test]
+        public void OnDelete_RotateRight()
+        {
+            tree = new AvlTree();
+            tree.Insert(2);
+            tree.Insert(1);
+            tree.Insert(3);
+            tree.Insert(0);
+
+            tree.Delete(3);
+
+            var results = new List<int>();
+            tree.InOrderTraverse(n => results.Add(n.Value));
+
+            Assert.AreEqual(3, results.Count);
+
+            for (var i = 0; i < 2; i++)
+            {
+                Assert.AreEqual(i, results[i]);
+            }
+
+            Assert.AreEqual(2, tree.Root!.Height, "Tree is not balanced to 2 layers.");
+        }
+
+        [Test]
+        public void OnDelete_RotateLeft()
+        {
+            tree = new AvlTree();
+            tree.Insert(0);
+            tree.Insert(1);
+            tree.Insert(-1);
+            tree.Insert(2);
+
+            tree.Delete(-1);
+
+            var results = new List<int>();
+            tree.InOrderTraverse(n => results.Add(n.Value));
+
+            Assert.AreEqual(3, results.Count);
+
+            for (var i = 0; i < 2; i++)
+            {
+                Assert.AreEqual(i, results[i]);
+            }
+
+            Assert.AreEqual(2, tree.Root!.Height, "Tree is not balanced to 2 layers.");
         }
 
         private int GetHeight(AvlTree.Node? node)
