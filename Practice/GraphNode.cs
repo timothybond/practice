@@ -41,5 +41,10 @@ namespace Practice
         {
             throw new NotImplementedException();
         }
+
+        public List<GraphNode>? BidirectionalSearch(GraphNode other, Action<GraphNode> onCheckNode)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
