@@ -204,7 +204,11 @@ namespace Practice.UnitTests
             Assert.AreEqual(3, path.Count);
 
             Assert.AreEqual(7, path[0].Value);
-            Assert.AreEqual(8, path[1].Value);
+
+            // Technically there are several options here since we can move diagonally
+            Assert.Contains(path[0], path[1].Neighbors.ToList());
+            Assert.Contains(path[2], path[1].Neighbors.ToList());
+            
             Assert.AreEqual(9, path[2].Value);
         }
 
@@ -228,11 +232,23 @@ namespace Practice.UnitTests
             Assert.AreEqual(7, path.Count);
 
             Assert.AreEqual(207, path[0].Value);
-            Assert.AreEqual(208, path[1].Value);
-            Assert.AreEqual(209, path[2].Value);
-            Assert.AreEqual(210, path[3].Value);
-            Assert.AreEqual(211, path[4].Value);
-            Assert.AreEqual(212, path[5].Value);
+
+            // Technically there are several options here since we can move diagonally
+            Assert.Contains(path[0], path[1].Neighbors.ToList());
+            Assert.Contains(path[2], path[1].Neighbors.ToList());
+            
+            Assert.Contains(path[1], path[2].Neighbors.ToList());
+            Assert.Contains(path[3], path[2].Neighbors.ToList());
+
+            Assert.Contains(path[2], path[3].Neighbors.ToList());
+            Assert.Contains(path[4], path[3].Neighbors.ToList());
+
+            Assert.Contains(path[3], path[4].Neighbors.ToList());
+            Assert.Contains(path[5], path[4].Neighbors.ToList());
+
+            Assert.Contains(path[4], path[5].Neighbors.ToList());
+            Assert.Contains(path[6], path[5].Neighbors.ToList());
+
             Assert.AreEqual(213, path[6].Value);
 
             // A single breadth-first graph search would check
@@ -279,12 +295,12 @@ namespace Practice.UnitTests
 
                 if (below && left)
                 {
-                    nodes[i].AddNeighbor(nodes[i + 1 + columns]);
+                    nodes[i].AddNeighbor(nodes[i - 1 + columns]);
                 }
 
                 if (below && right)
                 {
-                    nodes[i].AddNeighbor(nodes[i - 1 + columns]);
+                    nodes[i].AddNeighbor(nodes[i + 1 + columns]);
                 }
             }
 
