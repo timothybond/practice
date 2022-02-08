@@ -260,6 +260,45 @@ namespace Practice.UnitTests
             Assert.LessOrEqual(checkedNodes.Count, 98);
         }
 
+        [Test]
+        public void HandlesSelfSearch()
+        {
+            var nodes = BuildGrid(20, 20);
+            var checkedNodes = new List<GraphNode>();
+
+            var path = nodes[205].BidirectionalSearch(nodes[205], node => checkedNodes.Add(node))!;
+
+            Assert.AreEqual(1, path.Count);
+            Assert.AreSame(nodes[205], path[0]);
+        }
+
+        [Test]
+        public void ReturnsNullForFailedSearch()
+        {
+            /*
+             * 1 - 2 - 3   5 - 6
+             *     |
+             *     4
+             * 
+             * 
+             */
+            var nodes = new Dictionary<int, GraphNode>();
+            for (var i = 1; i <= 6; i++)
+            {
+                nodes.Add(i, new GraphNode(i));
+            }
+
+            nodes[1].AddNeighbor(nodes[2]);
+            nodes[2].AddNeighbor(nodes[3]);
+            nodes[2].AddNeighbor(nodes[4]);
+
+            nodes[5].AddNeighbor(nodes[6]);
+
+            var path = nodes[2].BidirectionalSearch(nodes[6], n => { });
+
+            Assert.IsNull(path);
+        }
+
         private Dictionary<int, GraphNode> BuildGrid(int rows, int columns)
         {
             /* For comprehensibility, this builds a graph that's really just a grid, e.g.:
