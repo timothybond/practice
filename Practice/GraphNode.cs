@@ -32,12 +32,12 @@ namespace Practice
             node.neighbors.Add(this);
         }
         
-        public GraphNode? BreadthFirstSearch(Action<GraphNode> onCheckNode, Func<GraphNode, bool> condition)
+        public GraphNode? BreadthFirstSearch(Func<GraphNode, bool> condition)
         {
             throw new NotImplementedException();
         }
 
-        public GraphNode? DepthFirstSearch(Action<GraphNode> onCheckNode, Func<GraphNode, bool> condition)
+        public GraphNode? DepthFirstSearch(Func<GraphNode, bool> condition)
         {
             throw new NotImplementedException();
         }

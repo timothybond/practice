@@ -48,8 +48,8 @@ namespace Practice.UnitTests
             root.BreadthFirstSearch(n =>
             {
                 searchedNodes.Add(n);
-            },
-            n => false);
+                return false;
+            });
 
             Assert.That(allNodes.All(n => searchedNodes.Contains(n)));
             Assert.AreEqual(searchedNodes.Count, 11);
@@ -66,8 +66,8 @@ namespace Practice.UnitTests
             root.BreadthFirstSearch(n =>
             {
                 searchedNodes.Add(n);
-            },
-            n => n.Value == 3);
+                return n.Value == 3;
+            });
 
             Assert.That(searchedNodes.Count == 4);
             
@@ -83,8 +83,8 @@ namespace Practice.UnitTests
             root.BreadthFirstSearch(n =>
             {
                 searchedNodes.Add(n);
-            },
-            n => false);
+                return false;
+            });
 
             Assert.That(searchedNodes[0].Value == 0);
             
@@ -138,8 +138,8 @@ namespace Practice.UnitTests
             root.DepthFirstSearch(n =>
             {
                 searchedNodes.Add(n);
-            },
-            n => false);
+                return false;
+            });
 
             Assert.That(allNodes.All(n => searchedNodes.Contains(n)));
             Assert.AreEqual(searchedNodes.Count, 11);
@@ -156,8 +156,8 @@ namespace Practice.UnitTests
             root.DepthFirstSearch(n =>
             {
                 searchedNodes.Add(n);
-            },
-            n => n.Value == 11);
+                return n.Value == 11;
+            });
 
             Assert.That(searchedNodes.Count == 3);
 
@@ -172,8 +172,8 @@ namespace Practice.UnitTests
             root.DepthFirstSearch(n =>
             {
                 searchedNodes.Add(n);
-            },
-            n => false);
+                return false;
+            });
 
             Assert.That(searchedNodes[0].Value == 0);
 
