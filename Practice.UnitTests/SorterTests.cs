@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using NUnit.Framework;
 
@@ -50,6 +51,30 @@ namespace Practice.UnitTests
                     Assert.AreEqual(i + 1, sortedNumbers[i]);
                 }
             }
+        }
+
+        [Test]
+        public void TimeSort()
+        {
+            // 5000 numbers
+            var numbers = new List<int>();
+            for (var i = 0; i < 100; i++)
+            {
+                numbers.AddRange(Numbers);
+            }
+
+            Sorter.Sort(numbers);
+
+            var stopwatch = Stopwatch.StartNew();
+
+            for (var i = 0; i < 100; i++)
+            {
+                Sorter.Sort(numbers);
+            }
+
+            stopwatch.Stop();
+
+            Console.WriteLine($"Total time: {stopwatch.Elapsed}");
         }
     }
 }
