@@ -85,7 +85,8 @@ namespace Practice.UnitTests
 
             var shortestPath = graph.GetShortestPath(a, j);
 
-            Assert.AreEqual(10, shortestPath.TotalDistance);
+            Assert.NotNull(shortestPath);
+            Assert.AreEqual(10, shortestPath!.TotalDistance);
         }
 
         [Test]

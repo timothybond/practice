@@ -17,18 +17,16 @@ namespace Practice
         /// </summary>
         /// <param name="target">The destination node to reach.</param>
         /// <returns>The shortest path to the target node, or null if no path exists.</returns>
-        public Path GetShortestPath(Node startNode, Node destinationNode)
+        public Path? GetShortestPath(Node startNode, Node destinationNode)
         {
             throw new NotImplementedException();
         }
 
         public class Node
         {
-            public Path ShortestPath { get; set; }
-
             public void AddLink(Node target, int distance)
             {
-                AddLink(new Link(target, distance));
+                throw new NotImplementedException();
             }
 
             public void AddLink(Link link)
@@ -52,15 +50,9 @@ namespace Practice
 
         public class Path
         {
-            private List<Link> links;
+            private readonly List<Link> _links = new();
 
-            public IReadOnlyList<Link> Links
-            {
-                get
-                {
-                    return links;
-                }
-            }
+            public IReadOnlyList<Link> Links => _links;
 
             public int TotalDistance { get; private set; }
 
