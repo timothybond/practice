@@ -246,6 +246,40 @@ namespace Practice.UnitTests
 
                 Assert.AreEqual(2, tree.Root!.Height, "Tree is not balanced to 2 layers.");
             }
+
+            [Test]
+            public void OnDelete_RootWithOneChild()
+            {
+                var tree = new AvlTree();
+                tree.Insert(0);
+                tree.Insert(1);
+
+                tree.Delete(0);
+
+                var results = new List<int>();
+                tree.InOrderTraverse(n => results.Add(n.Value));
+
+                Assert.AreEqual(1, results.Count);
+                Assert.AreEqual(1, results.Single());
+            }
+
+            [Test]
+            public void OnDelete_RootWithTwoChildren()
+            {
+                var tree = new AvlTree();
+                tree.Insert(0);
+                tree.Insert(1);
+                tree.Insert(-1);
+
+                tree.Delete(0);
+
+                var results = new List<int>();
+                tree.InOrderTraverse(n => results.Add(n.Value));
+
+                Assert.AreEqual(2, results.Count);
+                Assert.AreEqual(-1, results[0]);
+                Assert.AreEqual(1, results[1]);
+            }
         }
 
         private List<List<AvlTree.Node>> GetPaths(AvlTree tree)
