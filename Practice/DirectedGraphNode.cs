@@ -27,12 +27,17 @@ namespace Practice
         public class Node
         {
             private List<Link> _links = new();
+            private Dictionary<Node, Link> _linksByTarget = new();
 
             public IReadOnlyList<Link> Links => _links;
 
+            public IReadOnlyDictionary<Node, Link> LinksByTarget => _linksByTarget;
+
             public void AddLink(Node target, int distance)
             {
-                _links.Add(new Link(target, distance));
+                var link = new Link(target, distance);
+                _links.Add(link);
+                _linksByTarget.Add(target, link);
             }
         }
 
