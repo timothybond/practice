@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.InteropServices;
 
 namespace Practice
 {
@@ -57,7 +59,16 @@ namespace Practice
 
             public void Add(Link link)
             {
-                throw new NotImplementedException();
+                _links.Add(link);
+
+                TotalDistance += link.Distance;
+            }
+
+            public void AddRange(IEnumerable<Link> links)
+            {
+                _links.AddRange(links);
+
+                TotalDistance = _links.Sum(l => l.Distance);
             }
         }
     }
