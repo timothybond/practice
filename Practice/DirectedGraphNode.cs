@@ -24,14 +24,13 @@ namespace Practice
 
         public class Node
         {
+            private List<Link> _links = new();
+
+            public IReadOnlyList<Link> Links => _links;
+
             public void AddLink(Node target, int distance)
             {
-                throw new NotImplementedException();
-            }
-
-            public void AddLink(Link link)
-            {
-                throw new NotImplementedException();
+                _links.Add(new Link(target, distance));
             }
         }
 
