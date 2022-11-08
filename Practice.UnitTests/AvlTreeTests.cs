@@ -139,6 +139,7 @@ namespace Practice.UnitTests
                 {
                     if (Math.Abs(GetHeight(n.LeftChild) - GetHeight(n.RightChild)) > 1)
                     {
+                        var treeString = tree.ToString();
                         Assert.Fail("Tree not balanced at node {0}.", n);
                     }
                 });
@@ -197,6 +198,15 @@ namespace Practice.UnitTests
                 }
 
                 Assert.AreEqual(2, tree.Root!.Height, "Tree is not balanced to 2 layers.");
+            }
+
+            [Test]
+            public void SingleNodeIsHeightOne()
+            {
+                var tree = new AvlTree();
+                tree.Insert(0);
+
+                Assert.AreEqual(1, tree.Root!.Height);
             }
 
             [Test]

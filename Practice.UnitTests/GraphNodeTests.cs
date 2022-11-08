@@ -257,6 +257,7 @@ namespace Practice.UnitTests
             // (i.e. including 202 through 212), then at least one more.
             //
             // Bidirectionally we should max out at two 7x7 blocks.
+            Assert.Greater(checkedNodes.Count, 0);
             Assert.LessOrEqual(checkedNodes.Count, 98);
         }
 
