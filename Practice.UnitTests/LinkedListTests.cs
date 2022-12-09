@@ -23,9 +23,9 @@ namespace Practice.UnitTests
                 list.Add(item);
             }
 
-            var listEntries = list.GetEntries();
+            var listEntries = list.ToList();
 
-            Assert.That(listEntries.Length == entries.Length);
+            Assert.That(listEntries.Count == entries.Length);
 
             for (var i = 0; i < entries.Length; i++)
             {
@@ -45,9 +45,9 @@ namespace Practice.UnitTests
 
             list.RemoveFirst(15);
 
-            var listEntries = list.GetEntries();
+            var listEntries = list.ToList();
 
-            Assert.That(listEntries.Length == 4);
+            Assert.That(listEntries.Count == 4);
 
             Assert.AreEqual(20, listEntries[0]);
             Assert.AreEqual(25, listEntries[1]);
@@ -83,8 +83,8 @@ namespace Practice.UnitTests
 
             list.RemoveFirst(1);
             
-            var entries = list.GetEntries();
-            Assert.AreEqual(4, entries.Length);
+            var entries = list.ToList();
+            Assert.AreEqual(4, entries.Count);
 
             Assert.AreEqual(2, entries[0]);
             Assert.AreEqual(3, entries[1]);
@@ -104,8 +104,8 @@ namespace Practice.UnitTests
 
             list.RemoveFirst(5);
 
-            var entries = list.GetEntries();
-            Assert.AreEqual(4, entries.Length);
+            var entries = list.ToList();
+            Assert.AreEqual(4, entries.Count);
 
             Assert.AreEqual(1, entries[0]);
             Assert.AreEqual(2, entries[1]);
@@ -125,8 +125,8 @@ namespace Practice.UnitTests
 
             list.Insert(10, 3);
 
-            var entries = list.GetEntries();
-            Assert.AreEqual(6, entries.Length);
+            var entries = list.ToList();
+            Assert.AreEqual(6, entries.Count);
 
             Assert.AreEqual(1, entries[0]);
             Assert.AreEqual(2, entries[1]);
@@ -148,8 +148,8 @@ namespace Practice.UnitTests
 
             list.Insert(10, 0);
 
-            var entries = list.GetEntries();
-            Assert.AreEqual(6, entries.Length);
+            var entries = list.ToList();
+            Assert.AreEqual(6, entries.Count);
 
             Assert.AreEqual(10, entries[0]);
             Assert.AreEqual(1, entries[1]);
@@ -171,8 +171,8 @@ namespace Practice.UnitTests
 
             list.Insert(10, 5);
 
-            var entries = list.GetEntries();
-            Assert.AreEqual(6, entries.Length);
+            var entries = list.ToList();
+            Assert.AreEqual(6, entries.Count);
 
             Assert.AreEqual(1, entries[0]);
             Assert.AreEqual(2, entries[1]);
@@ -206,7 +206,7 @@ namespace Practice.UnitTests
 
             Assert.AreEqual(2, list.Count);
 
-            var entries = list.GetEntries();
+            var entries = list.ToList();
             Assert.AreEqual(1, entries[0]);
             Assert.AreEqual(2, entries[1]);
         }
