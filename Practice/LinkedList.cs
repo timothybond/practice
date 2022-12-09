@@ -2,26 +2,26 @@
 
 namespace Practice
 {
-    public class LinkedList
+    public class LinkedList<T> where T: notnull
     {
         public int Count { get; }
 
-        public void Add(int value)
+        public void Add(T value)
         {
             throw new NotImplementedException();
         }
 
-        public void Insert(int value, int index)
+        public void Insert(T value, int index)
         {
             throw new NotImplementedException();
         }
 
-        public void RemoveFirst(int value)
+        public void RemoveFirst(T value)
         {
             throw new NotImplementedException();
         }
 
-        public int[] GetEntries()
+        public T[] GetEntries()
         {
             throw new NotImplementedException();
         }

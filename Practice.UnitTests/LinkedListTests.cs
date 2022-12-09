@@ -16,7 +16,7 @@ namespace Practice.UnitTests
         [TestCase(5, 10, 15, 15, 20)]
         public void AddItems(params int[] entries)
         {
-            var list = new LinkedList();
+            var list = new LinkedList<int>();
 
             foreach (var item in entries)
             {
@@ -36,7 +36,7 @@ namespace Practice.UnitTests
         [Test]
         public void RemoveFirst()
         {
-            var list = new LinkedList();
+            var list = new LinkedList<int>();
             list.Add(15);
             list.Add(20);
             list.Add(25);
@@ -61,7 +61,7 @@ namespace Practice.UnitTests
         [TestCase(new int[] { })]
         public void Count(params int[] entries)
         {
-            var list = new LinkedList();
+            var list = new LinkedList<int>();
 
             foreach (var entry in entries)
             {
@@ -74,7 +74,7 @@ namespace Practice.UnitTests
         [Test]
         public void RemoveFirstEntry()
         {
-            var list = new LinkedList();
+            var list = new LinkedList<int>();
             list.Add(1);
             list.Add(2);
             list.Add(3);
@@ -95,7 +95,7 @@ namespace Practice.UnitTests
         [Test]
         public void RemoveLastEntry()
         {
-            var list = new LinkedList();
+            var list = new LinkedList<int>();
             list.Add(1);
             list.Add(2);
             list.Add(3);
@@ -116,7 +116,7 @@ namespace Practice.UnitTests
         [Test]
         public void Insert()
         {
-            var list = new LinkedList();
+            var list = new LinkedList<int>();
             list.Add(1);
             list.Add(2);
             list.Add(3);
@@ -139,7 +139,7 @@ namespace Practice.UnitTests
         [Test]
         public void InsertAtZero()
         {
-            var list = new LinkedList();
+            var list = new LinkedList<int>();
             list.Add(1);
             list.Add(2);
             list.Add(3);
@@ -162,7 +162,7 @@ namespace Practice.UnitTests
         [Test]
         public void InsertAtCount()
         {
-            var list = new LinkedList();
+            var list = new LinkedList<int>();
             list.Add(1);
             list.Add(2);
             list.Add(3);
@@ -187,7 +187,7 @@ namespace Practice.UnitTests
         {
             // Note: this mostly tests whether we can do things
             // that might mess up the "head" or "tail" pointers
-            var list = new LinkedList();
+            var list = new LinkedList<int>();
 
             list.Insert(1, 0);      // [1]
             list.Insert(2, 1);      // [1, 2]
