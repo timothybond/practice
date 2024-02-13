@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using System;
 
 namespace Practice.UnitTests
 {
@@ -25,6 +26,14 @@ namespace Practice.UnitTests
             Assert.AreEqual(12, heap.Pop());
             Assert.AreEqual(5, heap.Pop());
             Assert.AreEqual(2, heap.Pop());
+        }
+
+        [Test]
+        public void ThrowsIfPoppedWhenEmpty()
+        {
+            var heap = new MaxHeap();
+
+            Assert.Throws<InvalidOperationException>(() => heap.Pop());
         }
     }
 }
